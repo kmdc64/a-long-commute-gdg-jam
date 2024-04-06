@@ -16,6 +16,7 @@ public class TrackPopulator : MonoBehaviour
     [SerializeField] private AnimationCurve m_despawnScaleCurve;
     [SerializeField] private float m_despawnDuration = 0.75f;
     [SerializeField] private float m_despawnChainDelay = 0.35f;
+    [SerializeField] private float m_spaceMovementDuration = 0.2f;
     [SerializeField] private Vector3 m_setPieceSpacing = new Vector3(0f, 0f, 2f);
 
     private readonly List<SetPiece> m_setPieces = new();
@@ -110,6 +111,7 @@ public class TrackPopulator : MonoBehaviour
         }
 
         var lerpValue = 0f;
+        var lerpDuration = m_spaceMovementDuration * spacesMoved;
         var setPieceCount = m_setPieces.Count;
         var setPieces = m_setPieces;
         while (lerpValue < 1f)
@@ -132,7 +134,7 @@ public class TrackPopulator : MonoBehaviour
                 setPieces = m_setPieces;
             }
 
-            lerpValue = Mathf.Clamp((lerpTimer / 0.1f), 0f, 1f);
+            lerpValue = Mathf.Clamp((lerpTimer / lerpDuration), 0f, 1f);
             // Move the set pieces back in space, as we move the world around the player.
             for (var index = 0; index < setPieceCount; ++index)
             {

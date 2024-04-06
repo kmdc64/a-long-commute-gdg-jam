@@ -90,7 +90,7 @@ public class PlayerDirector : MonoBehaviour
         {
             OnPlayerMoveForwards?.Invoke(2);
             m_playerAnimator.SetTrigger(m_slideAnimationHashId);
-            m_forwardsCooldownTimer = m_forwardsCooldown;
+            m_forwardsCooldownTimer = m_forwardsCooldown * 2f;
             m_slideRequested = false;
             m_forwardRequested = false;
         }
