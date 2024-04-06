@@ -84,13 +84,14 @@ public class TrackPopulator : MonoBehaviour
         OnTrackDespawned?.Invoke();
     }
 
-    private void Event_OnPlayerMoveForwards()
+    private void Event_OnPlayerMoveForwards(int spacesMoved)
     {
+        var spaceMoved = m_setPieceSpacing * spacesMoved;
         // Move the set pieces back a space, as we move the world around the player.
         for (var index = 0; index < m_setPieces.Count; ++index)
         {
             var setPiece = m_setPieces[index];
-            setPiece.transform.position -= m_setPieceSpacing;
+            setPiece.transform.position -= spaceMoved;
         }
     }
 }
