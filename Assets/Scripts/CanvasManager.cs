@@ -1,28 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
-    public TextMeshProUGUI Distance;
-    public TextMeshProUGUI Muffins;
+    private GameObject m_playerStats;
 
-    public TextMeshProUGUI TotalDistance;
-    public TextMeshProUGUI TotalMuffins;
-    public TextMeshProUGUI FinalScore;
-    // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Distance.text = ("Distance: " + PlayerStats.DistanceTravelled);
-        Muffins.text = ("Muffins: " + PlayerStats.HappinessItemsCollected);
+        m_playerStats = GameObject.Find("Player");
+        m_playerStats.GetComponent ("playerStats");
     }
 
     public void PlayGame()
@@ -33,6 +21,7 @@ public class CanvasManager : MonoBehaviour
 
     public void QuitGame()
     {
+        PlayerStats.SaveScore();
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
     }
@@ -44,18 +33,7 @@ public class CanvasManager : MonoBehaviour
 
     public void Menu()
     {
+        PlayerStats.SaveScore();
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void GameOver()
-    {
-        SceneManager.LoadScene("Game Over Screen", LoadSceneMode.Additive);
-        TotalDistance.text = ("Total distance travelled: " + PlayerStats.DistanceTravelled);
-        TotalMuffins.text = ("Total muffins collected: " + PlayerStats.HappinessItemsCollected);
-
-        int score;
-        score = PlayerStats.DistanceTravelled * PlayerStats.HappinessItemsCollected;
-
-        FinalScore.text = ("Total Score: " + score);
     }
 }
