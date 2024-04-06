@@ -3,10 +3,15 @@ guid: 1f0d24a8d1a5da548b5fb5c4379670a0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Colour Swatch
+    second: {fileID: 2100000, guid: aee488aa9cc3add4596dc2011461f1a7, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:
