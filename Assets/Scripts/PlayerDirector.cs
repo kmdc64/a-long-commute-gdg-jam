@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerDirector : MonoBehaviour
 {
     public static event Action OnPlayerMoveForwards;
+    public static event Action OnPlayerDeath;
 
     private const string StepAnimationId = "Step";
 
