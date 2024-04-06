@@ -9,8 +9,6 @@ using UnityEngine;
 
 public class SetPieceDirector : MonoBehaviour
 {
-    public static event Action OnPlayerMoveForwards;
-
     [SerializeField] private TrackPopulator m_trackPopulator;
     [SerializeField] private SetPieceCollectionSO m_startingSetCollection;
     [Tooltip("The amount of set pieces placed ahead of the player at any one time.")]
@@ -22,15 +20,10 @@ public class SetPieceDirector : MonoBehaviour
 
     private void Start()
     {
-        OnPlayerMoveForwards += Event_OnPlayerMoveForwards;
+        PlayerDirector.OnPlayerMoveForwards += Event_OnPlayerMoveForwards;
 
         RegisterSet(m_startingSetCollection);
         StartTrack();
-    }
-
-    private void OnDestroy()
-    {
-        OnPlayerMoveForwards = null;
     }
 
     public void StartTrack()

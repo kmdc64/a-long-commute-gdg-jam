@@ -21,8 +21,15 @@ public class TrackPopulator : MonoBehaviour
     private readonly List<SetPiece> m_setPieces = new();
     private Coroutine m_despawnCoroutine;
 
+    private void OnEnable()
+    {
+        PlayerDirector.OnPlayerMoveForwards += Event_OnPlayerMoveForwards;
+    }
+
     private void OnDisable()
     {
+        PlayerDirector.OnPlayerMoveForwards -= Event_OnPlayerMoveForwards;
+
         if (m_despawnCoroutine != null)
         {
             StopCoroutine(m_despawnCoroutine);
@@ -74,5 +81,15 @@ public class TrackPopulator : MonoBehaviour
 
         yield return new WaitForSeconds(m_despawnDuration);
         OnTrackDespawned?.Invoke();
+    }
+
+    private void Event_OnPlayerMoveForwards()
+    {
+        // Move the set pieces back a space, as we move the world around the player.
+        for (var index = 0; index < m_setPieces.Count; ++index)
+        {
+            var setPiece = m_setPieces[index];
+            setPiece.transform.position -= m_setPieceSpacing;
+        }
     }
 }

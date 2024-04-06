@@ -1,0 +1,40 @@
+{
+    "name": "PlayerInputs",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "f15761c3-9400-43e0-a169-3fe5abc9a686",
+            "actions": [
+                {
+                    "name": "Forwards",
+                    "type": "Value",
+                    "id": "368dea79-118a-4e37-afe4-a9fe550933cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1017b58f-2e06-4d3d-ac32-aa775fc82446",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Forwards",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Default",
+            "bindingGroup": "Default",
+            "devices": []
+        }
+    ]
+}
