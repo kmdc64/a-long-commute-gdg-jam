@@ -21,12 +21,22 @@ public class PlayerDirector : MonoBehaviour
     private float m_forwardsCooldownTimer;
     private bool m_stepRequested;
 
+    private void Start()
+    {
+        SetPieceItem.OnAnyItemCollected += Event_OnItemCollected;
+    }
+
     private void OnDestroy()
     {
         OnPlayerMoveForwards = null;
     }
 
     private void Update()
+    {
+        UpdateInput();
+    }
+
+    private void UpdateInput()
     {
         var stepAllowed = (m_forwardsCooldownTimer <= m_forwardsCooldownLeeway);
         if (Input.GetKeyDown(KeyCode.Space) && stepAllowed)
@@ -47,6 +57,22 @@ public class PlayerDirector : MonoBehaviour
                 m_forwardsCooldownTimer = m_forwardsCooldown;
                 m_stepRequested = false;
             }
+        }
+    }
+
+    private void Event_OnItemCollected(SetPieceItem item)
+    {
+        switch (item.ItemType)
+        {
+            case SetPieceItem.ItemTypes.HappinessGain:
+                break;
+            case SetPieceItem.ItemTypes.HappinessDrain:
+                break;
+            case SetPieceItem.ItemTypes.Boost:
+                break;
+            default:
+                Debug.LogError("Item type not supported.");
+                break;
         }
     }
 }
