@@ -171,6 +171,8 @@ MonoBehaviour:
   m_playerAnimator: {fileID: 1596093475}
   m_forwardsCooldown: 0.25
   m_forwardsCooldownLeeway: 0.2
+  m_stepKey: 273
+  m_slideKey: 274
 --- !u!114 &291268866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d74b11d2432cae419188425fac74a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceTravelled: 0
-  muffinsCollected: 0
 --- !u!1 &527509678
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

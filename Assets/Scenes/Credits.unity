@@ -470,8 +470,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1974133507}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: Menu
+        m_TargetAssemblyTypeName: CreditsView, Assembly-CSharp
+        m_MethodName: Action_ReturnToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1974133502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98a59a47819d264ba6f6bd4f39fb32f, type: 3}
+  m_Script: {fileID: 11500000, guid: 881e617f7ee9c26408c5ef7fa1ddb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2030893734
