@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Forwards",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "368dea79-118a-4e37-afe4-a9fe550933cc",
                     "expectedControlType": "Button",
                     "processors": "",

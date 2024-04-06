@@ -5,7 +5,6 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerDirector : MonoBehaviour
 {
@@ -16,11 +15,11 @@ public class PlayerDirector : MonoBehaviour
         OnPlayerMoveForwards = null;
     }
 
-    public void OnForwards(InputAction.CallbackContext context)
+    private void Update()
     {
-        Debug.Log("Moved forwards.");
-        if (context.phase == InputActionPhase.Performed)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Moved forwards.");
             OnPlayerMoveForwards?.Invoke();
         }
     }

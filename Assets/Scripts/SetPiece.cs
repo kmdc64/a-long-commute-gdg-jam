@@ -54,9 +54,13 @@ public class SetPiece : MonoBehaviour
         }
     }
 
-    public void Despawn(AnimationCurve despawnScaleCurve, float despawnDuration)
+    private void OnDestroy()
     {
         OnPieceDespawned?.Invoke();
+    }
+
+    public void Despawn(AnimationCurve despawnScaleCurve, float despawnDuration)
+    {
         m_despawnScaleCurve = despawnScaleCurve;
         m_despawnDuration = despawnDuration;
         m_despawnCoroutine = StartCoroutine(ShrinkAnimation());
@@ -69,11 +73,12 @@ public class SetPiece : MonoBehaviour
         {
             var normalisedTime = (m_despawnTimeElapsed / m_despawnDuration) * m_despawnScaleCurve.keys[^1].time;
             var scaleEvaluation = m_despawnScaleCurve.Evaluate(normalisedTime);
-            transform.localScale = new Vector3(originalScale.x * scaleEvaluation, originalScale.y * scaleEvaluation);
+            transform.localScale = new Vector3(originalScale.x * scaleEvaluation, originalScale.y * scaleEvaluation, originalScale.z * scaleEvaluation);
             m_despawnTimeElapsed += Time.deltaTime;
             yield return null;
         }
 
         m_despawnTimeElapsed = 0f;
+        Destroy(gameObject);
     }
 }

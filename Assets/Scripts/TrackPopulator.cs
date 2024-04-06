@@ -64,6 +64,7 @@ public class TrackPopulator : MonoBehaviour
     private void DespawnSetPiece(SetPiece piece)
     {
         piece.Despawn(m_despawnScaleCurve, m_despawnDuration);
+        m_setPieces.Remove(piece);
     }
 
     private IEnumerator CompleteTrackDespawning()
