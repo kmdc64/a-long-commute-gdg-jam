@@ -113,7 +113,7 @@ public class SetPiece : MonoBehaviour
             var normalisedTime = (m_despawnTimeElapsed / m_despawnDuration) * m_despawnScaleCurve.keys[^1].time;
             var scaleEvaluation = m_despawnScaleCurve.Evaluate(normalisedTime);
             transform.localScale = new Vector3(originalScale.x * scaleEvaluation, originalScale.y * scaleEvaluation, originalScale.z * scaleEvaluation);
-            if (originalItemScale != Vector3.zero)
+            if ((m_spawnedItem != null) && (originalItemScale != Vector3.zero))
             {
                 m_spawnedItem.transform.localScale = new Vector3(originalItemScale.x * scaleEvaluation, originalItemScale.y * scaleEvaluation, originalItemScale.z * scaleEvaluation);
             }

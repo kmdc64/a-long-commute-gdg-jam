@@ -29,6 +29,7 @@ public class PlayerDirector : MonoBehaviour
     private readonly int m_stepAnimationHashId = Animator.StringToHash(StepAnimationId);
     private readonly int m_slideAnimationHashId = Animator.StringToHash(SlideAnimationId);
     private float m_forwardsCooldownTimer;
+    private bool m_forwardRequested;
     private bool m_stepRequested;
     private bool m_slideRequested;
 
@@ -49,16 +50,18 @@ public class PlayerDirector : MonoBehaviour
 
     private void UpdateInput()
     {
-        var forwardAllowed = (m_forwardsCooldownTimer <= m_forwardsCooldownLeeway);
+        var forwardAllowed = (m_forwardsCooldownTimer <= m_forwardsCooldownLeeway) && !m_forwardRequested;
         if (forwardAllowed)
         {
             if (Input.GetKeyDown(m_stepKey))
             {
                 m_stepRequested = true;
+                m_forwardRequested = true;
             }
             else if (Input.GetKeyDown(m_slideKey))
             {
                 m_slideRequested = true;
+                m_forwardRequested = true;
             }
         }
 
@@ -80,6 +83,7 @@ public class PlayerDirector : MonoBehaviour
             m_playerAnimator.SetTrigger(m_stepAnimationHashId);
             m_forwardsCooldownTimer = m_forwardsCooldown;
             m_stepRequested = false;
+            m_forwardRequested = false;
         }
 
         if (m_slideRequested)
@@ -88,6 +92,7 @@ public class PlayerDirector : MonoBehaviour
             m_playerAnimator.SetTrigger(m_slideAnimationHashId);
             m_forwardsCooldownTimer = m_forwardsCooldown;
             m_slideRequested = false;
+            m_forwardRequested = false;
         }
     }
 
