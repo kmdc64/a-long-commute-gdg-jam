@@ -5,18 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
-    GameObject playerStats;
-    // Start is called before the first frame update
+    private GameObject m_playerStats;
+
     void Start()
     {
-        playerStats = GameObject.Find("Player");
-        playerStats.GetComponent ("playerStats");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        m_playerStats = GameObject.Find("Player");
+        m_playerStats.GetComponent ("playerStats");
     }
 
     public void PlayGame()
@@ -27,6 +21,7 @@ public class CanvasManager : MonoBehaviour
 
     public void QuitGame()
     {
+        PlayerStats.SaveScore();
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
     }
@@ -38,6 +33,7 @@ public class CanvasManager : MonoBehaviour
 
     public void Menu()
     {
+        PlayerStats.SaveScore();
         SceneManager.LoadScene("MainMenu");
     }
 }
