@@ -1,32 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
+/*
+ * PlayerStats:
+ * Tracks player metrics.
+ */
+
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float distanceTravelled = 0;
-    public float muffinsCollected = 0;
+    public int DistanceTravelled { get; private set; }
+    public int HappinessItemsCollected { get; private set; }
+    public int DepressantItemsCollected { get; private set; }
+    public int BoostItemsCollected { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerDirector.OnPlayerMoveForwards += Event_OnPlayerMovesForwards;
+        SetPieceItem.OnAnyItemCollected += Event_OnAnyItemCollected;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Event_OnPlayerMovesForwards()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) //&& player is alive )
-        {
-            distanceTravelled++;
-        }
+        DistanceTravelled++;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Event_OnAnyItemCollected(SetPieceItem item)
     {
-        if (collision.gameObject.tag == "muffin")
+        switch (item.ItemType)
         {
-            muffinsCollected++;
+            case SetPieceItem.ItemTypes.HappinessGain:
+                HappinessItemsCollected++;
+                break;
+            case SetPieceItem.ItemTypes.HappinessDrain:
+                DepressantItemsCollected++;
+                break;
+            case SetPieceItem.ItemTypes.Boost:
+                BoostItemsCollected++;
+                break;
+            default:
+                Debug.LogError("Item type not supported.");
+                break;
         }
     }
 }
