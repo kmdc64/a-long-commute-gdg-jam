@@ -35,7 +35,7 @@ public class SetPiece : MonoBehaviour
     private Coroutine m_despawnCoroutine;
     private AnimationCurve m_despawnScaleCurve;
     private float m_despawnDuration;
-    private float m_despawnTimeElapsed = -1f;
+    private float m_despawnTimeElapsed = 0f;
 
     private void OnEnable()
     {
