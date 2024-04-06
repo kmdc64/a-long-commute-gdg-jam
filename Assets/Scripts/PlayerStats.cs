@@ -7,12 +7,11 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int DistanceTravelled { get; private set; }
-    public int HappinessItemsCollected { get; private set; }
-    public int DepressantItemsCollected { get; private set; }
-    public int BoostItemsCollected { get; private set; }
+    public static int DistanceTravelled { get; private set; }
+    public static int HappinessItemsCollected { get; private set; }
+    public static int DepressantItemsCollected { get; private set; }
+    public static int BoostItemsCollected { get; private set; }
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayerDirector.OnPlayerMoveForwards += Event_OnPlayerMovesForwards;
