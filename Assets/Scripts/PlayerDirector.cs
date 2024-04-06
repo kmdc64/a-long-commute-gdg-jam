@@ -8,18 +8,29 @@ using UnityEngine;
 
 public class PlayerDirector : MonoBehaviour
 {
-    public static event Action OnPlayerMoveForwards;
+    public enum ForwardMovements
+    {
+        Step,
+        Slide
+    }
+
+    public static event Action<int> OnPlayerMoveForwards; // int: spaces moved
     public static event Action OnPlayerDeath;
 
     private const string StepAnimationId = "Step";
+    private const string SlideAnimationId = "Slide";
 
     [SerializeField] private Animator m_playerAnimator;
     [SerializeField] private float m_forwardsCooldown = 0.5f;
     [SerializeField] private float m_forwardsCooldownLeeway = 0.2f;
+    [SerializeField] private KeyCode m_stepKey = KeyCode.UpArrow;
+    [SerializeField] private KeyCode m_slideKey = KeyCode.DownArrow;
 
     private readonly int m_stepAnimationHashId = Animator.StringToHash(StepAnimationId);
+    private readonly int m_slideAnimationHashId = Animator.StringToHash(SlideAnimationId);
     private float m_forwardsCooldownTimer;
     private bool m_stepRequested;
+    private bool m_slideRequested;
 
     private void Start()
     {
@@ -38,10 +49,17 @@ public class PlayerDirector : MonoBehaviour
 
     private void UpdateInput()
     {
-        var stepAllowed = (m_forwardsCooldownTimer <= m_forwardsCooldownLeeway);
-        if (Input.GetKeyDown(KeyCode.Space) && stepAllowed)
+        var forwardAllowed = (m_forwardsCooldownTimer <= m_forwardsCooldownLeeway);
+        if (forwardAllowed)
         {
-            m_stepRequested = true;
+            if (Input.GetKeyDown(m_stepKey))
+            {
+                m_stepRequested = true;
+            }
+            else if (Input.GetKeyDown(m_slideKey))
+            {
+                m_slideRequested = true;
+            }
         }
 
         if (m_forwardsCooldownTimer > 0f)
@@ -50,13 +68,26 @@ public class PlayerDirector : MonoBehaviour
         }
         else
         {
-            if (m_stepRequested)
-            {
-                OnPlayerMoveForwards?.Invoke();
-                m_playerAnimator.SetTrigger(m_stepAnimationHashId);
-                m_forwardsCooldownTimer = m_forwardsCooldown;
-                m_stepRequested = false;
-            }
+            ProcessForwardsRequests();
+        }
+    }
+    
+    private void ProcessForwardsRequests()
+    {
+        if (m_stepRequested)
+        {
+            OnPlayerMoveForwards?.Invoke(1);
+            m_playerAnimator.SetTrigger(m_stepAnimationHashId);
+            m_forwardsCooldownTimer = m_forwardsCooldown;
+            m_stepRequested = false;
+        }
+
+        if (m_slideRequested)
+        {
+            OnPlayerMoveForwards?.Invoke(2);
+            m_playerAnimator.SetTrigger(m_slideAnimationHashId);
+            m_forwardsCooldownTimer = m_forwardsCooldown;
+            m_slideRequested = false;
         }
     }
 

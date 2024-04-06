@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
         ResetScores();
     }
 
-    private void Event_OnPlayerMovesForwards()
+    private void Event_OnPlayerMovesForwards(PlayerDirector.ForwardMovements movementType)
     {
         DistanceTravelled++;
         UpdateScore(100);

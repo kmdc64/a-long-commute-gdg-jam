@@ -64,9 +64,12 @@ public class SetPieceDirector : MonoBehaviour
         m_trackPopulator.DespawnPassedSetPiece();
     }
 
-    private void Event_OnPlayerMoveForwards()
+    private void Event_OnPlayerMoveForwards(int spacesMoved)
     {
-        PlaceNextSetPiece();
-        RemovePassedSetPiece();
+        for (var index = 0; index < spacesMoved; ++index)
+        {
+            PlaceNextSetPiece();
+            RemovePassedSetPiece();
+        }
     }
 }
