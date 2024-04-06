@@ -23,6 +23,9 @@ public class SetPieceItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player")
+            return;
+
         OnAnyItemCollected?.Invoke(this);
         Destroy(gameObject);
     }

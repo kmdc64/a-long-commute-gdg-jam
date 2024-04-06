@@ -88,8 +88,9 @@ public class SetPiece : MonoBehaviour
         {
             var randomItemIndex = UnityEngine.Random.Range(0, m_spawnableItems.Length);
             var randomItem = m_spawnableItems[randomItemIndex];
-            m_spawnedItem = Instantiate(randomItem, transform);
+            m_spawnedItem = Instantiate(randomItem, m_itemSpawnPosition);
             m_spawnedItem.transform.position = m_itemSpawnPosition.position;
+            m_spawnedItem.transform.localScale = Vector3.one;
             SetPieceItem.OnAnyItemCollected += DespawnItem;
         }
     }
