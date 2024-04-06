@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3149198647572688658}
   - component: {fileID: 8038756738624087627}
+  - component: {fileID: -4534785728008256616}
   m_Layer: 0
   m_Name: MuffinCollectable
   m_TagString: Untagged
@@ -48,12 +49,25 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4534785728008256616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2641937914324020152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5c2f6667e160a41a8e5b39e30a2679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemType: 0
 --- !u!1001 &3354729257627187305
 PrefabInstance:
   m_ObjectHideFlags: 0

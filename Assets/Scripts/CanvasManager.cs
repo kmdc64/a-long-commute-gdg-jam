@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
+    GameObject playerStats;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerStats = GameObject.Find("Player");
+        playerStats.GetComponent ("playerStats");
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class CanvasManager : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("TestTrack");
+        SceneManager.LoadScene("HUD",LoadSceneMode.Additive);
     }
 
     public void QuitGame()
