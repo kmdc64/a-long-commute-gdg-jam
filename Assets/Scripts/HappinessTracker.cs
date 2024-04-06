@@ -13,6 +13,14 @@ public class HappinessTracker : MonoBehaviour
     private static int s_maximumHappiness = 100;
     private static int s_currentHappiness = 0;
 
+    private void Start()
+    {
+        SetPieceDirector.OnNewRunStarted += () =>
+        {
+            OnHappinessUpdated?.Invoke(GetNormalisedHappiness());
+        };
+    }
+
     public static void AddHappiness(int happinessIncrement)
     {
         s_currentHappiness = Mathf.Clamp(s_currentHappiness + happinessIncrement, 0, s_maximumHappiness);
