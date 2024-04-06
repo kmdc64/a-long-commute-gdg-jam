@@ -1,3 +1,7 @@
+/*
+ * MainMenuView:
+ * UI view of the Main Menu screen.
+ */
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,15 +10,12 @@ public class MainMenuView : MonoBehaviour
 {
     public void Action_PlayGame()
     {
-        SceneManager.LoadScene("TestTrack");
-        SceneManager.LoadScene("HUD", LoadSceneMode.Additive);
+        GameFlow.StartRun();
     }
 
     public void Action_QuitGame()
     {
-        PlayerStats.SaveScore();
-        Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        GameFlow.QuitGame();
     }
 
     public void Action_OpenCredits()

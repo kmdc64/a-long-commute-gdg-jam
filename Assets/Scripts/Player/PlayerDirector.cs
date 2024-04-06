@@ -21,6 +21,9 @@ public class PlayerDirector : MonoBehaviour
     private const string SlideAnimationId = "Slide";
 
     [SerializeField] private Animator m_playerAnimator;
+    [SerializeField] private int m_startingHappiness = 30;
+    [SerializeField] private int m_happinessLossRate = 5;
+    [SerializeField] private float m_happinessLossInterval = 0.25f;
     [SerializeField] private float m_forwardsCooldown = 0.5f;
     [SerializeField] private float m_forwardsCooldownLeeway = 0.2f;
     [SerializeField] private KeyCode m_stepKey = KeyCode.UpArrow;
@@ -32,10 +35,13 @@ public class PlayerDirector : MonoBehaviour
     private bool m_forwardRequested;
     private bool m_stepRequested;
     private bool m_slideRequested;
+    private float m_happinessLossTimer;
 
     private void Start()
     {
-        SetPieceItem.OnAnyItemCollected += Event_OnItemCollected;
+        SetPieceItem.OnAnyItemCollected += Event_OnAnyItemCollected;
+
+        HappinessTracker.AddHappiness(m_startingHappiness);
     }
 
     private void OnDestroy()
@@ -45,7 +51,21 @@ public class PlayerDirector : MonoBehaviour
 
     private void Update()
     {
+        UpdateHappiness();
         UpdateInput();
+    }
+
+    private void UpdateHappiness()
+    {
+        if (m_happinessLossTimer >= m_happinessLossInterval)
+        {
+            HappinessTracker.RemoveHappiness(m_happinessLossRate);
+            m_happinessLossTimer = 0f;
+        }
+        else
+        {
+            m_happinessLossTimer += Time.deltaTime;
+        }
     }
 
     private void UpdateInput()
@@ -96,16 +116,26 @@ public class PlayerDirector : MonoBehaviour
         }
     }
 
-    private void Event_OnItemCollected(SetPieceItem item)
+    private void Event_OnAnyItemCollected(SetPieceItem item)
     {
         switch (item.ItemType)
         {
             case SetPieceItem.ItemTypes.HappinessGain:
+                HappinessTracker.AddHappiness(item.Value);
+                m_happinessLossTimer = 0f;
                 break;
+
             case SetPieceItem.ItemTypes.HappinessDrain:
+                HappinessTracker.RemoveHappiness(item.Value);
                 break;
+
             case SetPieceItem.ItemTypes.Boost:
                 break;
+
+            case SetPieceItem.ItemTypes.Death:
+                OnPlayerDeath?.Invoke();
+                break;
+
             default:
                 Debug.LogError("Item type not supported.");
                 break;

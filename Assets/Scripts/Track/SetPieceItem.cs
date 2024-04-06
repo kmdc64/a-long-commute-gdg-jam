@@ -12,14 +12,17 @@ public class SetPieceItem : MonoBehaviour
     {
         HappinessGain,
         HappinessDrain,
-        Boost
+        Boost,
+        Death
     }
 
     public static event Action<SetPieceItem> OnAnyItemCollected;
 
     public ItemTypes ItemType => m_itemType;
+    public int Value => m_value;
 
     [SerializeField] private ItemTypes m_itemType;
+    [SerializeField] private int m_value;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,6 +30,9 @@ public class SetPieceItem : MonoBehaviour
             return;
 
         OnAnyItemCollected?.Invoke(this);
-        Destroy(gameObject);
+        if (ItemType != ItemTypes.Death)
+        {
+            Destroy(gameObject);
+        }
     }
 }

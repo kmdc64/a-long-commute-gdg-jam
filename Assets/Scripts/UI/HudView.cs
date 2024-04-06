@@ -1,12 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+/*
+ * HudView:
+ * UI view of the in-game HUD.
+ */
+
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HudView : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI m_distanceLabel;
+    private const string ScoreText = "Score: {0}";
+
+    [SerializeField] TextMeshProUGUI m_scoreLabel;
 
     private void Start()
     {
@@ -15,11 +19,11 @@ public class HudView : MonoBehaviour
 
     private void Event_OnPlayerMovedForward(int spacesMoved)
     {
-        m_distanceLabel.text = "Distance: " + PlayerStats.DistanceTravelled;
+        m_scoreLabel.text = string.Format(ScoreText, PlayerStats.DistanceTravelled);
     }
 
     public void Action_TriggerGameOver()
     {
-        SceneManager.LoadScene("Game Over Screen", LoadSceneMode.Additive);
+        GameFlow.StartGameOver();
     }
 }

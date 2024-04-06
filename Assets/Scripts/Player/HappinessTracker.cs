@@ -6,20 +6,12 @@
 using System;
 using UnityEngine;
 
-public class HappinessTracker : MonoBehaviour
+public class HappinessTracker
 {
     public static event Action<float> OnHappinessUpdated; // Passes normalised happiness value.
 
     private static int s_maximumHappiness = 100;
     private static int s_currentHappiness = 0;
-
-    private void Start()
-    {
-        SetPieceDirector.OnNewRunStarted += () =>
-        {
-            OnHappinessUpdated?.Invoke(GetNormalisedHappiness());
-        };
-    }
 
     public static void AddHappiness(int happinessIncrement)
     {
@@ -35,6 +27,6 @@ public class HappinessTracker : MonoBehaviour
 
     private static float GetNormalisedHappiness()
     {
-        return s_currentHappiness / s_maximumHappiness;
+        return (float)s_currentHappiness / (float)s_maximumHappiness;
     }
 }

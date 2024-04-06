@@ -84,6 +84,8 @@ public class PlayerStats : MonoBehaviour
                 BoostItemsCollected++;
                 UpdateScore(10);
                 break;
+            case SetPieceItem.ItemTypes.Death:
+                break;
             default:
                 Debug.LogError("Item type not supported.");
                 break;
