@@ -180,7 +180,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -470,8 +470,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804153213}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: Menu
+        m_TargetAssemblyTypeName: GameOverView, Assembly-CSharp
+        m_MethodName: Action_ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -816,8 +816,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804153213}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_TargetAssemblyTypeName: GameOverView, Assembly-CSharp
+        m_MethodName: Action_QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -977,14 +977,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 804153208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98a59a47819d264ba6f6bd4f39fb32f, type: 3}
+  m_Script: {fileID: 11500000, guid: d22f2cfe94dafba44b1a9c5651681135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: {fileID: 0}
-  muffins: {fileID: 0}
-  totalDistance: {fileID: 591132289}
-  totalMuffins: {fileID: 2134022984}
-  totalScore: {fileID: 1509335020}
+  m_totalDistanceLabel: {fileID: 591132289}
+  m_totalHappinessItemsCollectedLabel: {fileID: 2134022984}
+  m_totalScoreLabel: {fileID: 1509335020}
 --- !u!1 &916439362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,8 +1781,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804153213}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_TargetAssemblyTypeName: GameOverView, Assembly-CSharp
+        m_MethodName: Action_Replay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2084,7 +2082,7 @@ GameObject:
   - component: {fileID: 2134022985}
   - component: {fileID: 2134022984}
   m_Layer: 5
-  m_Name: Muffins Collected_Txt
+  m_Name: Happiness Items Collected_Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
