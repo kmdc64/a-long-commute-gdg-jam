@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0b0c024130e45eb449063078b1a297cf
+guid: a18454e75b0e7c54dacfd1b1666e0963
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Colour Swatch
-    second: {fileID: 2100000, guid: aee488aa9cc3add4596dc2011461f1a7, type: 2}
+      name: Energy Drink
+    second: {fileID: 2100000, guid: 17fd48c04a1e70743849d9ee353c75a6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 1
