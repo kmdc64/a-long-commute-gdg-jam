@@ -980,11 +980,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98a59a47819d264ba6f6bd4f39fb32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: {fileID: 0}
-  Muffins: {fileID: 0}
-  TotalDistance: {fileID: 591132289}
-  TotalMuffins: {fileID: 2134022984}
-  FinalScore: {fileID: 1509335020}
+  distance: {fileID: 0}
+  muffins: {fileID: 0}
+  totalDistance: {fileID: 591132289}
+  totalMuffins: {fileID: 2134022984}
+  totalScore: {fileID: 1509335020}
 --- !u!1 &916439362
 GameObject:
   m_ObjectHideFlags: 0
