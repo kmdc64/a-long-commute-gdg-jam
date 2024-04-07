@@ -59,8 +59,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brighten: 0.005828753
-    - _Greyscaleify: 0.21912313
+    - _Brighten: 0
+    - _Greyscaleify: 0.07001948
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
