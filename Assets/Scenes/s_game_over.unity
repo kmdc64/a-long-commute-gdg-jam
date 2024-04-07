@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Oh no, anyway...
+  m_text: You tried so hard, and got so far...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b108e3212360132498e6236afdb1a8f9, type: 2}
   m_sharedMaterial: {fileID: -4050322167105159207, guid: b108e3212360132498e6236afdb1a8f9,
@@ -1036,12 +1036,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120
+  m_fontSize: 64.4
   m_fontSizeBase: 120
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2019,6 +2019,13 @@ MonoBehaviour:
   m_totalHappinessItemsCollectedLabel: {fileID: 1991594603}
   m_highScoreLabel: {fileID: 1361833881}
   m_totalScoreLabel: {fileID: 311786669}
+  m_titleLabel: {fileID: 389949715}
+  m_gameOverTitles:
+  - You tried so hard, and got so far...
+  - Time to search for a job closer to home...
+  - At least you have an excuse for being late to work!
+  - Why does the way to work keep changing?
+  - Do you think you can call a Taxi from here?
 --- !u!114 &2131715821
 MonoBehaviour:
   m_ObjectHideFlags: 0

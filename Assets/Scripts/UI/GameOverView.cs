@@ -18,6 +18,13 @@ public class GameOverView : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_totalHappinessItemsCollectedLabel;
     [SerializeField] TextMeshProUGUI m_highScoreLabel;
     [SerializeField] TextMeshProUGUI m_totalScoreLabel;
+    [SerializeField] TextMeshProUGUI m_titleLabel;
+    [SerializeField] string[] m_gameOverTitles;
+
+    private void OnEnable()
+    {
+        m_titleLabel.text = m_gameOverTitles[UnityEngine.Random.Range(0, m_gameOverTitles.Length - 1)];
+    }
 
     private void Update()
     {
