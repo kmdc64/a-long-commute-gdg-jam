@@ -21,7 +21,6 @@ public class PlayerDirector : MonoBehaviour
     private const string SlideAnimationId = "Slide";
 
     [SerializeField] private Animator m_playerAnimator;
-    [SerializeField] private int m_startingHappiness = 30;
     [SerializeField] private int m_happinessLossRate = 5;
     [SerializeField] private float m_happinessLossInterval = 0.25f;
     [SerializeField] private float m_forwardsCooldown = 0.5f;
@@ -40,8 +39,6 @@ public class PlayerDirector : MonoBehaviour
     private void Start()
     {
         SetPieceItem.OnAnyItemCollected += Event_OnAnyItemCollected;
-
-        HappinessTracker.AddHappiness(m_startingHappiness);
     }
 
     private void OnDestroy()

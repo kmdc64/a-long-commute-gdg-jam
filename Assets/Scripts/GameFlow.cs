@@ -19,6 +19,7 @@ public class GameFlow : MonoBehaviour
     }
 
     [SerializeField] private SetPieceDirector m_setPieceDirector;
+    [SerializeField] private int m_startingHappiness = 60;
 
     public static GameFlow Instance => s_instance;
     public static GameStates GameState => s_gameState;
@@ -83,6 +84,7 @@ public class GameFlow : MonoBehaviour
     {
         s_gameState = GameStates.Run;
         m_setPieceDirector.StartRun();
+        HappinessTracker.SetHappiness(m_startingHappiness);
     }
 
     private IEnumerator PrepareGameOver()

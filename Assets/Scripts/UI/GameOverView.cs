@@ -19,7 +19,7 @@ public class GameOverView : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_highScoreLabel;
     [SerializeField] TextMeshProUGUI m_totalScoreLabel;
 
-    private void OnEnable()
+    private void Update()
     {
         m_totalDistanceLabel.text = string.Format(DistanceText, PlayerStats.HappinessItemsCollected);
         m_highScoreLabel.text = string.Format(HighScoreText, PlayerStats.HighScore);

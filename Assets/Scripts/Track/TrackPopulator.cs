@@ -23,6 +23,7 @@ public class TrackPopulator : MonoBehaviour
     public int CurrentSetLength => m_setPieces.Count;
 
     private readonly List<SetPiece> m_setPieces = new();
+    private Coroutine m_moveCoroutine;
     private Coroutine m_despawnCoroutine;
     private int m_pendingDespawnPieces;
 
@@ -34,6 +35,12 @@ public class TrackPopulator : MonoBehaviour
     private void OnDisable()
     {
         PlayerDirector.OnPlayerMoveForwards -= Event_OnPlayerMoveForwards;
+
+        if (m_moveCoroutine != null)
+        {
+            StopCoroutine(m_moveCoroutine);
+            m_moveCoroutine = null;
+        }
 
         if (m_despawnCoroutine != null)
         {
@@ -55,8 +62,10 @@ public class TrackPopulator : MonoBehaviour
         if (m_setPieces.Count == 0)
             return;
 
+        if (m_despawnCoroutine != null)
+            return; // Track is already mid-despawning.
+
         DespawnSetPiece(m_setPieces[m_pendingDespawnPieces]);
-        m_pendingDespawnPieces++;
     }
 
     public void DespawnTrack()
@@ -69,6 +78,7 @@ public class TrackPopulator : MonoBehaviour
 
     private void DespawnSetPiece(SetPiece piece)
     {
+        m_pendingDespawnPieces++;
         piece.Despawn(m_despawnScaleCurve, m_despawnDuration);
         piece.OnPieceDespawned += () =>
         {
@@ -79,16 +89,21 @@ public class TrackPopulator : MonoBehaviour
 
     private IEnumerator CompleteTrackDespawning()
     {
+        // Wait for the passed piece to despawn first.
+        while ((m_moveCoroutine != null) || m_pendingDespawnPieces > 0)
+            yield return null;
+
         m_pendingDespawnPieces = m_setPieces.Count;
-        for (var index = 0; index < m_setPieces.Count; ++index)
+        var setPieces = m_setPieces;
+        for (var index = 0; index < setPieces.Count; ++index)
         {
-            var setPiece = m_setPieces[index];
+            var setPiece = setPieces[index];
             setPiece.Despawn(m_despawnScaleCurve, m_despawnDuration);
             setPiece.OnPieceDespawned += () =>
             {
-                m_pendingDespawnPieces = Mathf.Clamp((m_pendingDespawnPieces - 1), 0, m_setPieces.Count);
+                m_pendingDespawnPieces = Mathf.Clamp((m_pendingDespawnPieces - 1), 0, setPieces.Count);
             };
-            if (index < m_setPieces.Count - 1)
+            if (index < setPieces.Count - 1)
             {
                 yield return new WaitForSeconds(m_despawnChainDelay);
             }
@@ -102,7 +117,7 @@ public class TrackPopulator : MonoBehaviour
 
     private void Event_OnPlayerMoveForwards(int spacesMoved)
     {
-        StartCoroutine(MoveWorld(spacesMoved));
+        m_moveCoroutine = StartCoroutine(MoveWorld(spacesMoved));
     }
 
     private IEnumerator MoveWorld(int spacesMoved)
@@ -155,5 +170,7 @@ public class TrackPopulator : MonoBehaviour
             lerpTimer += Time.deltaTime;
             yield return null;
         }
+
+        m_moveCoroutine = null;
     }
 }

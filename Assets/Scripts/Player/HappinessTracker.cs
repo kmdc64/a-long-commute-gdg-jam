@@ -13,6 +13,12 @@ public class HappinessTracker
     private static int s_maximumHappiness = 100;
     private static int s_currentHappiness = 0;
 
+    public static void SetHappiness(int happiness)
+    {
+        s_currentHappiness = Mathf.Clamp(happiness, 0, s_maximumHappiness);
+        OnHappinessUpdated?.Invoke(GetNormalisedHappiness());
+    }
+
     public static void AddHappiness(int happinessIncrement)
     {
         s_currentHappiness = Mathf.Clamp(s_currentHappiness + happinessIncrement, 0, s_maximumHappiness);
