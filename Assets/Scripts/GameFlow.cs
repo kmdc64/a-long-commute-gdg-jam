@@ -69,7 +69,9 @@ public class GameFlow : MonoBehaviour
         s_gameState = GameStates.Quitting;
         PlayerStats.SaveScore();
         Application.Quit();
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#endif //UNITY_EDITOR
     }
 
     public static void StartGameOver()
