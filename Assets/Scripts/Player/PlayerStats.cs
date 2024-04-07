@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
             return;
 
         PlayerPrefs.SetInt(HighScorePrefId, CurrentScore);
+        HighScore = CurrentScore;
     }
 
     private void UpdateScore(int scoreIncrement)

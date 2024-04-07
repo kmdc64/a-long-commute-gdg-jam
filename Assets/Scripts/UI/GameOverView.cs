@@ -9,17 +9,20 @@ using UnityEngine;
 public class GameOverView : MonoBehaviour
 {
     private const string DistanceText = "Distance Collected: {0}";
-    private const string ScoreText = "Total Score: {0}";
+    private const string HighScoreText = "High Score: {0}";
+    private const string TotalScoreText = "Total Score: {0}";
 
     [SerializeField] TextMeshProUGUI m_totalDistanceLabel;
     [SerializeField] TextMeshProUGUI m_totalHappinessItemsCollectedLabel;
+    [SerializeField] TextMeshProUGUI m_highScoreLabel;
     [SerializeField] TextMeshProUGUI m_totalScoreLabel;
 
     private void OnEnable()
     {
         m_totalDistanceLabel.text = string.Format(DistanceText, PlayerStats.HappinessItemsCollected);
+        m_highScoreLabel.text = string.Format(HighScoreText, PlayerStats.HighScore);
         var score = PlayerStats.DistanceTravelled * PlayerStats.HappinessItemsCollected;
-        m_totalScoreLabel.text = string.Format(ScoreText, score);
+        m_totalScoreLabel.text = string.Format(TotalScoreText, score);
     }
 
     public void Action_Replay()
