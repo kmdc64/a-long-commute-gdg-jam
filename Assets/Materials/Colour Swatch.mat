@@ -60,7 +60,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Brighten: 0
-    - _Greyscaleify: 0.13592488
+    - _Greyscaleify: 0.0035306811
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
