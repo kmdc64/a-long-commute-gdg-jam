@@ -4,11 +4,12 @@
  */
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CreditsView : MonoBehaviour
 {
-    public void Action_ReturnToMenu()
+    public void Action_CloseCredits()
     {
-        GameFlow.ReturnToMainMenu();
+        SceneManager.UnloadSceneAsync("s_credits");
     }
 }

@@ -18,6 +18,11 @@ public class HappinessView : MonoBehaviour
         HappinessTracker.OnHappinessUpdated += Event_OnHappinessUpdated;
     }
 
+    private void OnDestroy()
+    {
+        HappinessTracker.OnHappinessUpdated -= Event_OnHappinessUpdated;
+    }
+
     private void Event_OnHappinessUpdated(float normalisedHappinessValue)
     {
         m_happinessBar.fillAmount = normalisedHappinessValue;

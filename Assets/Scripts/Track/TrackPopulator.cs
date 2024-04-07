@@ -19,6 +19,8 @@ public class TrackPopulator : MonoBehaviour
     [SerializeField] private float m_spaceMovementDuration = 0.2f;
     [SerializeField] private Vector3 m_setPieceSpacing = new Vector3(0f, 0f, 2f);
 
+    public bool IsTrackDespawning => (m_despawnCoroutine != null);
+
     private readonly List<SetPiece> m_setPieces = new();
     private Coroutine m_despawnCoroutine;
     private int m_pendingDespawnPieces;
@@ -76,11 +78,15 @@ public class TrackPopulator : MonoBehaviour
 
     private IEnumerator CompleteTrackDespawning()
     {
+        m_pendingDespawnPieces = m_setPieces.Count;
         for (var index = 0; index < m_setPieces.Count; ++index)
         {
-            var setPiece = m_setPieces[0];
-            DespawnSetPiece(setPiece);
-            m_setPieces.RemoveAt(0);
+            var setPiece = m_setPieces[index];
+            setPiece.Despawn(m_despawnScaleCurve, m_despawnDuration);
+            setPiece.OnPieceDespawned += () =>
+            {
+                m_pendingDespawnPieces = Mathf.Clamp((m_pendingDespawnPieces - 1), 0, m_setPieces.Count);
+            };
             if (index < m_setPieces.Count - 1)
             {
                 yield return new WaitForSeconds(m_despawnChainDelay);
@@ -88,7 +94,9 @@ public class TrackPopulator : MonoBehaviour
         }
 
         yield return new WaitForSeconds(m_despawnDuration);
+        m_setPieces.Clear();
         OnTrackDespawned?.Invoke();
+        m_despawnCoroutine = null;
     }
 
     private void Event_OnPlayerMoveForwards(int spacesMoved)

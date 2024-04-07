@@ -10,6 +10,7 @@ public class MainMenuView : MonoBehaviour
 {
     public void Action_PlayGame()
     {
+        SceneManager.UnloadSceneAsync("s_main_menu");
         GameFlow.StartRun();
     }
 
@@ -20,6 +21,6 @@ public class MainMenuView : MonoBehaviour
 
     public void Action_OpenCredits()
     {
-        SceneManager.LoadScene("Credits");
+        SceneManager.LoadScene("s_credits", LoadSceneMode.Additive);
     }
 }

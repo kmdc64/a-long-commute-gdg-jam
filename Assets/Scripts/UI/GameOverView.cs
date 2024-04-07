@@ -5,6 +5,7 @@
 
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverView : MonoBehaviour
 {
@@ -27,11 +28,14 @@ public class GameOverView : MonoBehaviour
 
     public void Action_Replay()
     {
+        SceneManager.UnloadSceneAsync("s_game_over");
+        GameFlow.SpawnNewTrack();
         GameFlow.StartRun(saveProgress: true);
     }
 
     public void Action_ReturnToMainMenu()
     {
+        SceneManager.UnloadSceneAsync("s_game_over");
         GameFlow.ReturnToMainMenu(saveProgress: true);
     }
 }

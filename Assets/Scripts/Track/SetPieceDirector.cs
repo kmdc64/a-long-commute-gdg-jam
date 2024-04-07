@@ -16,11 +16,18 @@ public class SetPieceDirector : MonoBehaviour
     [Tooltip("The amount of set pieces placed ahead of the player at any one time.")]
     [SerializeField] private int m_setDistance = 6;
 
+    public bool IsTrackDespawning => m_trackPopulator.IsTrackDespawning;
+
     private Dictionary<SetPiece.PieceDifficulties, List<SetPiece>> m_set = new();
     private SetPieceCollectionSO m_currentSetCollection;
     private int m_currentDifficulty = 0;
 
-    private void Start()
+    public void StartRun()
+    {
+        OnNewRunStarted?.Invoke();
+    }
+
+    public void InitialiseTrack()
     {
         PlayerDirector.OnPlayerMoveForwards += Event_OnPlayerMoveForwards;
 
@@ -28,14 +35,19 @@ public class SetPieceDirector : MonoBehaviour
         StartTrack();
     }
 
-    public void StartTrack()
+    public void ClearTrack()
+    {
+        PlayerDirector.OnPlayerMoveForwards -= Event_OnPlayerMoveForwards;
+
+        m_trackPopulator.DespawnTrack();
+    }
+
+    private void StartTrack()
     {
         for (var index = 0; index < m_setDistance; ++index)
         {
             PlaceNextSetPiece();
         }
-
-        OnNewRunStarted?.Invoke();
     }
 
     private void RegisterSet(SetPieceCollectionSO setCollection)

@@ -51,6 +51,9 @@ public class PlayerDirector : MonoBehaviour
 
     private void Update()
     {
+        if (GameFlow.GameState != GameFlow.GameStates.Run)
+            return;
+
         UpdateHappiness();
         UpdateInput();
     }
