@@ -19,6 +19,6 @@ public class HudView : MonoBehaviour
 
     private void Event_OnPlayerMovedForward(int spacesMoved)
     {
-        m_scoreLabel.text = string.Format(ScoreText, PlayerStats.DistanceTravelled);
+        m_scoreLabel.text = string.Format(ScoreText, PlayerStats.CurrentScore);
     }
 }

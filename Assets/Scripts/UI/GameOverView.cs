@@ -21,9 +21,9 @@ public class GameOverView : MonoBehaviour
 
     private void Update()
     {
-        m_totalDistanceLabel.text = string.Format(DistanceText, PlayerStats.HappinessItemsCollected);
+        m_totalDistanceLabel.text = string.Format(DistanceText, PlayerStats.DistanceTravelled);
         m_highScoreLabel.text = string.Format(HighScoreText, PlayerStats.HighScore);
-        var score = PlayerStats.DistanceTravelled * PlayerStats.HappinessItemsCollected;
+        var score = PlayerStats.CurrentScore;
         m_totalScoreLabel.text = string.Format(TotalScoreText, score);
         m_totalHappinessItemsCollectedLabel.text = string.Format(HappinessText, PlayerStats.HappinessItemsCollected);
     }

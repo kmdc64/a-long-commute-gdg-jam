@@ -3,6 +3,7 @@
  * Manager of the game flow.
  */
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,8 @@ public class GameFlow : MonoBehaviour
         GameOver,
         Quitting
     }
+
+    public static event Action OnNewRunStarted;
 
     [SerializeField] private SetPieceDirector m_setPieceDirector;
     [SerializeField] private int m_startingHappiness = 60;
@@ -83,8 +86,8 @@ public class GameFlow : MonoBehaviour
     private void StartRunInternal()
     {
         s_gameState = GameStates.Run;
-        m_setPieceDirector.StartRun();
         HappinessTracker.SetHappiness(m_startingHappiness);
+        OnNewRunStarted?.Invoke();
     }
 
     private IEnumerator PrepareGameOver()

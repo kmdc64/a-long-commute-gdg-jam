@@ -9,8 +9,6 @@ using UnityEngine;
 
 public class SetPieceDirector : MonoBehaviour
 {
-    public static event Action OnNewRunStarted;
-
     [SerializeField] private TrackPopulator m_trackPopulator;
     [SerializeField] private SetPieceCollectionSO m_startingSetCollection;
     [Tooltip("The amount of set pieces placed ahead of the player at any one time.")]
@@ -23,11 +21,6 @@ public class SetPieceDirector : MonoBehaviour
     private int m_currentDifficulty = 0;
     private bool m_lastPieceStaticObstacle;
     private bool m_lastPieceMovingObstacle;
-
-    public void StartRun()
-    {
-        OnNewRunStarted?.Invoke();
-    }
 
     public void InitialiseTrack()
     {
@@ -88,11 +81,15 @@ public class SetPieceDirector : MonoBehaviour
         var isMovingObstacle = (piece.PieceType is SetPiece.PieceTypes.MovingObstacle);
         if ((isStaticObstacle || isMovingObstacle) && m_trackPopulator.CurrentSetLength == 0)
             return false; // First track piece should never be an obstacle.
-        
-        var isValid = (!m_lastPieceStaticObstacle && !m_lastPieceMovingObstacle) 
-            || (m_lastPieceStaticObstacle && !isStaticObstacle)
-            || (m_lastPieceMovingObstacle && !isMovingObstacle);
-        return isValid;
+
+        if (!isStaticObstacle && !isMovingObstacle)
+            return true;
+
+        var lastPieceWasObstacle = m_lastPieceStaticObstacle || m_lastPieceMovingObstacle;
+        if (!lastPieceWasObstacle)
+            return true;
+
+        return false;
     }
 
     private void RemovePassedSetPiece()

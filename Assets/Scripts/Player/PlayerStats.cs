@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        SetPieceDirector.OnNewRunStarted += Event_OnNewRunStarted;
+        GameFlow.OnNewRunStarted += Event_OnNewRunStarted;
         PlayerDirector.OnPlayerMoveForwards += Event_OnPlayerMovesForwards;
         PlayerDirector.OnPlayerDeath += Event_OnPlayerDeath;
         SetPieceItem.OnAnyItemCollected += Event_OnAnyItemCollected;
@@ -34,6 +34,7 @@ public class PlayerStats : MonoBehaviour
 
         PlayerPrefs.SetInt(HighScorePrefId, CurrentScore);
         HighScore = CurrentScore;
+        HighScoreBeat = false;
     }
 
     private void UpdateScore(int scoreIncrement)

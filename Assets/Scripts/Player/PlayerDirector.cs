@@ -38,6 +38,7 @@ public class PlayerDirector : MonoBehaviour
 
     private void Start()
     {
+        GameFlow.OnNewRunStarted += Event_OnNewRunStarted;
         SetPieceItem.OnAnyItemCollected += Event_OnAnyItemCollected;
     }
 
@@ -144,5 +145,12 @@ public class PlayerDirector : MonoBehaviour
                 Debug.LogError("Item type not supported.");
                 break;
         }
+    }
+
+    private void Event_OnNewRunStarted()
+    {
+        m_stepRequested = false;
+        m_slideRequested = false;
+        m_forwardRequested = false;
     }
 }
