@@ -872,7 +872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ugh.
+  m_text: A Long Commute
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b108e3212360132498e6236afdb1a8f9, type: 2}
   m_sharedMaterial: {fileID: -4050322167105159207, guid: b108e3212360132498e6236afdb1a8f9,
@@ -900,12 +900,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 240
+  m_fontSize: 120
   m_fontSizeBase: 240
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
