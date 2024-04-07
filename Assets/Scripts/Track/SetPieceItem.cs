@@ -1,6 +1,6 @@
 /*
  * SetPieceItem:
- * A collectable item that is spawned on the track.
+ * A collidable item that is spawned on the track.
  */
 
 using System;
@@ -17,18 +17,20 @@ public class SetPieceItem : MonoBehaviour
     }
 
     public static event Action<SetPieceItem> OnAnyItemCollected;
+    public event Action OnItemCollided;
 
     public ItemTypes ItemType => m_itemType;
     public int Value => m_value;
 
-    [SerializeField] private ItemTypes m_itemType;
+    [SerializeField] protected ItemTypes m_itemType;
     [SerializeField] private int m_value;
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Player")
             return;
 
+        OnItemCollided?.Invoke();
         OnAnyItemCollected?.Invoke(this);
         if (ItemType != ItemTypes.Death)
         {

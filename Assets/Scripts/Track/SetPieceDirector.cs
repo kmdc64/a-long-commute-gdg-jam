@@ -21,6 +21,8 @@ public class SetPieceDirector : MonoBehaviour
     private Dictionary<SetPiece.PieceDifficulties, List<SetPiece>> m_set = new();
     private SetPieceCollectionSO m_currentSetCollection;
     private int m_currentDifficulty = 0;
+    private bool m_lastPieceStaticObstacle;
+    private bool m_lastPieceMovingObstacle;
 
     public void StartRun()
     {
@@ -68,7 +70,29 @@ public class SetPieceDirector : MonoBehaviour
         var pieceDifficulty = UnityEngine.Random.Range(0, m_currentDifficulty);
         var pieceList = m_set[(SetPiece.PieceDifficulties)pieceDifficulty];
         var pieceToSpawn = pieceList[UnityEngine.Random.Range(0, pieceList.Count)];
+        var isValid = CheckPieceIsValid(pieceToSpawn);
+        while (!isValid)
+        {
+            // Keep selecting at random till we get a valid piece.
+            pieceToSpawn = pieceList[UnityEngine.Random.Range(0, pieceList.Count)];
+            isValid = CheckPieceIsValid(pieceToSpawn);
+        }
         m_trackPopulator.SpawnSetPiece(pieceToSpawn);
+        m_lastPieceStaticObstacle = (pieceToSpawn.PieceType is SetPiece.PieceTypes.Slide or SetPiece.PieceTypes.Jump);
+        m_lastPieceMovingObstacle = (pieceToSpawn.PieceType is SetPiece.PieceTypes.MovingObstacle);
+    }
+
+    private bool CheckPieceIsValid(SetPiece piece)
+    {
+        var isStaticObstacle = (piece.PieceType is SetPiece.PieceTypes.Slide or SetPiece.PieceTypes.Jump);
+        var isMovingObstacle = (piece.PieceType is SetPiece.PieceTypes.MovingObstacle);
+        if ((isStaticObstacle || isMovingObstacle) && m_trackPopulator.CurrentSetLength == 0)
+            return false; // First track piece should never be an obstacle.
+        
+        var isValid = (!m_lastPieceStaticObstacle && !m_lastPieceMovingObstacle) 
+            || (m_lastPieceStaticObstacle && !isStaticObstacle)
+            || (m_lastPieceMovingObstacle && !isMovingObstacle);
+        return isValid;
     }
 
     private void RemovePassedSetPiece()

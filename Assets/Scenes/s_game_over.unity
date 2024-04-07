@@ -1891,7 +1891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Happiness Items Collected:'
+  m_text: 'Muffins Collected:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b108e3212360132498e6236afdb1a8f9, type: 2}
   m_sharedMaterial: {fileID: -4050322167105159207, guid: b108e3212360132498e6236afdb1a8f9,

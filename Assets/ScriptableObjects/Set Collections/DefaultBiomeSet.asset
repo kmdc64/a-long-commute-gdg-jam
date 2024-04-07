@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c14c8fbd3e53b418589d3ae18b5d65, type: 3}
+  m_Name: DefaultBiomeSet
+  m_EditorClassIdentifier: 
+  m_setId: Default
+  m_setPieces:
+  - {fileID: 394775396219527233, guid: cabe398f6733df04da8485372172cdd4, type: 3}
+  - {fileID: 394775396219527233, guid: 5922c5bc5400ff9428ac8c7ed41ae8b0, type: 3}
+  - {fileID: 394775396219527233, guid: 058cc4d871d9d9740b6f620f73e15710, type: 3}
+  - {fileID: 394775396219527233, guid: a150a32035a8d5c46b78e8682fef8aa1, type: 3}
+  - {fileID: 394775396219527233, guid: 4b3ea1d15e6018e46a337829dd972977, type: 3}

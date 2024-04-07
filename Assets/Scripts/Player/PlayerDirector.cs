@@ -136,7 +136,11 @@ public class PlayerDirector : MonoBehaviour
                 break;
 
             case SetPieceItem.ItemTypes.Death:
+                if (GameFlow.GameState != GameFlow.GameStates.Run)
+                    return;
+
                 OnPlayerDeath?.Invoke();
+                GameFlow.StartGameOver();
                 break;
 
             default:

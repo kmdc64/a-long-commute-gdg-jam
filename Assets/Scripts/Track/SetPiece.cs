@@ -14,7 +14,8 @@ public class SetPiece : MonoBehaviour
         Flat,
         Choice,
         Jump,
-        Slide
+        Slide,
+        MovingObstacle,
     }
 
     public enum PieceDifficulties
@@ -88,9 +89,9 @@ public class SetPiece : MonoBehaviour
         {
             var randomItemIndex = UnityEngine.Random.Range(0, m_spawnableItems.Length);
             var randomItem = m_spawnableItems[randomItemIndex];
-            m_spawnedItem = Instantiate(randomItem, m_itemSpawnPosition);
+            m_spawnedItem = Instantiate(randomItem);
             m_spawnedItem.transform.position = m_itemSpawnPosition.position;
-            m_spawnedItem.transform.localScale = Vector3.one;
+            m_spawnedItem.transform.SetParent(m_itemSpawnPosition, worldPositionStays: true);
             SetPieceItem.OnAnyItemCollected += DespawnItem;
         }
     }

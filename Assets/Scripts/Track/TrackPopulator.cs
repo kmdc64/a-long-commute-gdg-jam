@@ -20,6 +20,7 @@ public class TrackPopulator : MonoBehaviour
     [SerializeField] private Vector3 m_setPieceSpacing = new Vector3(0f, 0f, 2f);
 
     public bool IsTrackDespawning => (m_despawnCoroutine != null);
+    public int CurrentSetLength => m_setPieces.Count;
 
     private readonly List<SetPiece> m_setPieces = new();
     private Coroutine m_despawnCoroutine;

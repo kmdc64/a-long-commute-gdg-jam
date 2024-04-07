@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class GameOverView : MonoBehaviour
 {
-    private const string DistanceText = "Distance Collected: {0}";
+    private const string DistanceText = "Distance Travelled: {0}";
+    private const string HappinessText = "Muffins Collected: {0}";
     private const string HighScoreText = "High Score: {0}";
     private const string TotalScoreText = "Total Score: {0}";
 
@@ -24,6 +25,7 @@ public class GameOverView : MonoBehaviour
         m_highScoreLabel.text = string.Format(HighScoreText, PlayerStats.HighScore);
         var score = PlayerStats.DistanceTravelled * PlayerStats.HappinessItemsCollected;
         m_totalScoreLabel.text = string.Format(TotalScoreText, score);
+        m_totalHappinessItemsCollectedLabel.text = string.Format(HappinessText, PlayerStats.HappinessItemsCollected);
     }
 
     public void Action_Replay()
