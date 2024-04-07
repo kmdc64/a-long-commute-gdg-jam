@@ -21,9 +21,4 @@ public class HudView : MonoBehaviour
     {
         m_scoreLabel.text = string.Format(ScoreText, PlayerStats.DistanceTravelled);
     }
-
-    public void Action_TriggerGameOver()
-    {
-        GameFlow.StartGameOver();
-    }
 }
