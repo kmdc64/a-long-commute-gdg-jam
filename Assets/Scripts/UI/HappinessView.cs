@@ -12,6 +12,11 @@ public class HappinessView : MonoBehaviour
     [SerializeField] private AnimationCurve m_colourifyCurve;
     [SerializeField] private AnimationCurve m_bleachifyCurve;
     [SerializeField] private Material m_colourMaterial;
+    [SerializeField] private Color m_happinessColor;
+    [SerializeField] private Color m_neutralColor;
+    [SerializeField] private Color m_depressionColor;
+    [SerializeField] private AnimationCurve m_happinessToNeutral;
+    [SerializeField] private AnimationCurve m_neutralToDepression;
 
     private void Awake()
     {
@@ -25,6 +30,16 @@ public class HappinessView : MonoBehaviour
 
     private void Event_OnHappinessUpdated(float normalisedHappinessValue)
     {
+        // Set happiness bar colour.
+        var inDepressedState = HappinessTracker.InDepressedState();
+        var curve = inDepressedState ? m_neutralToDepression : m_happinessToNeutral;
+        var evaluation = curve.Evaluate(normalisedHappinessValue);
+        var colorA = inDepressedState ? m_depressionColor : m_neutralColor;
+        var colorB = inDepressedState ? m_neutralColor : m_happinessColor;
+        var color = Color.Lerp(colorA, colorB, evaluation);
+        m_happinessBar.color = color;
+
+        // Set world colour...
         m_happinessBar.fillAmount = normalisedHappinessValue;
         var colourifyValue = 1f - m_colourifyCurve.Evaluate(normalisedHappinessValue);
         m_colourMaterial.SetFloat("_Greyscaleify", colourifyValue);

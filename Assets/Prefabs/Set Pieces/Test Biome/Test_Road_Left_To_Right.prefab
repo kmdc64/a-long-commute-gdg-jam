@@ -175,12 +175,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7917308758476135072}
+  - component: {fileID: 394775396219527233}
   - component: {fileID: 4764627005782795032}
   - component: {fileID: 1465077828546056885}
   - component: {fileID: 7653432792429623470}
-  - component: {fileID: 394775396219527233}
   m_Layer: 0
-  m_Name: Terrain_Easy_04
+  m_Name: Test_Road_Left_To_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,8 +210,28 @@ Transform:
   - {fileID: 3649810832201863946}
   - {fileID: 3830727036824849858}
   - {fileID: 6924190835430137466}
+  - {fileID: 4046485759687947552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &394775396219527233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060990685629456654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa261f6fbad3a2c47b7d54483578a868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pieceType: 4
+  m_difficultyLevel: 0
+  m_allowItemSpawns: 1
+  m_chanceOfItemSpawn: 0.35
+  m_spawnableItems:
+  - {fileID: -4534785728008256616, guid: 12bcada4723e9e74db3cdbb7742b689f, type: 3}
+  m_itemSpawnPosition: {fileID: 4046485759687947552}
 --- !u!33 &4764627005782795032
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -283,25 +303,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &394775396219527233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3060990685629456654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa261f6fbad3a2c47b7d54483578a868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_pieceType: 4
-  m_difficultyLevel: 0
-  m_allowItemSpawns: 0
-  m_chanceOfItemSpawn: 1
-  m_spawnableItems:
-  - {fileID: 7683681469630066307}
-  m_itemSpawnPosition: {fileID: 3649810832201863946}
 --- !u!1 &4962214267938524263
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +583,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7151125260588863188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046485759687947552}
+  m_Layer: 0
+  m_Name: Item Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4046485759687947552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151125260588863188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7917308758476135072}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7653422027247171056
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,8 +859,8 @@ MonoBehaviour:
   m_value: 0
   m_itemToSpawn: {fileID: 1198712700288785214, guid: d4deb27a2db664d40894b83ec1acd6e5,
     type: 3}
-  m_pointA: {fileID: 3830727036824849858}
-  m_pointB: {fileID: 6924190835430137466}
+  m_pointA: {fileID: 6924190835430137466}
+  m_pointB: {fileID: 3830727036824849858}
   m_spawnInterval: 3
   m_movementDuration: 1
 --- !u!1 &8570658573725781661

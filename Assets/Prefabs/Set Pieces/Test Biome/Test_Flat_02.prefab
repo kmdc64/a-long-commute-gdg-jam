@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7917308758476135072}
+  - component: {fileID: 394775396219527233}
   - component: {fileID: 4764627005782795032}
   - component: {fileID: 1465077828546056885}
   - component: {fileID: 7653432792429623470}
-  - component: {fileID: 394775396219527233}
   m_Layer: 0
-  m_Name: Terrain_Easy_02
+  m_Name: Test_Flat_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,6 +37,24 @@ Transform:
   - {fileID: 8269521747803080626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &394775396219527233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060990685629456654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa261f6fbad3a2c47b7d54483578a868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pieceType: 0
+  m_difficultyLevel: 2
+  m_allowItemSpawns: 0
+  m_chanceOfItemSpawn: 0
+  m_spawnableItems: []
+  m_itemSpawnPosition: {fileID: 0}
 --- !u!33 &4764627005782795032
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108,24 +126,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &394775396219527233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3060990685629456654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa261f6fbad3a2c47b7d54483578a868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_pieceType: 3
-  m_difficultyLevel: 0
-  m_allowItemSpawns: 0
-  m_chanceOfItemSpawn: 0
-  m_spawnableItems: []
-  m_itemSpawnPosition: {fileID: 0}
 --- !u!1001 &3914039429251210941
 PrefabInstance:
   m_ObjectHideFlags: 0

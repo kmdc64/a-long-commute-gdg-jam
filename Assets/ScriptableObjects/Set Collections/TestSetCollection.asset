@@ -18,3 +18,5 @@ MonoBehaviour:
   - {fileID: 7497203816234951101, guid: ab41d479b0ec50b4e819953a30ed31b6, type: 3}
   - {fileID: 7686516532521780508, guid: 785cba10150e9d442a8643a37734e5f7, type: 3}
   - {fileID: 5623977214508378561, guid: c50709f480b894449ac921e1e3dfe775, type: 3}
+  m_difficultyConfigs:
+  - {fileID: 11400000, guid: e2d9bb61659c23f489d048b899249934, type: 2}

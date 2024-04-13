@@ -18,7 +18,7 @@ public class SetPieceDirector : MonoBehaviour
 
     private Dictionary<SetPiece.PieceDifficulties, List<SetPiece>> m_set = new();
     private SetPieceCollectionSO m_currentSetCollection;
-    private int m_currentDifficulty = 0;
+    private int m_currentMaxDifficulty = 0;
     private bool m_lastPieceStaticObstacle;
     private bool m_lastPieceMovingObstacle;
 
@@ -39,6 +39,10 @@ public class SetPieceDirector : MonoBehaviour
 
     private void StartTrack()
     {
+        m_currentMaxDifficulty = 0;
+        m_lastPieceStaticObstacle = false;
+        m_lastPieceMovingObstacle = false;
+
         for (var index = 0; index < m_setDistance; ++index)
         {
             PlaceNextSetPiece();
@@ -60,7 +64,11 @@ public class SetPieceDirector : MonoBehaviour
 
     private void PlaceNextSetPiece()
     {
-        var pieceDifficulty = UnityEngine.Random.Range(0, m_currentDifficulty);
+        // Raise the baseline difficulty if the happiness has dropped into the depression zone.
+        var maximumDifficultyOfSetCollection = Mathf.Min(m_currentSetCollection.DifficultyConfigs.Length - 1, m_currentMaxDifficulty);
+        var proposedBaselineDifficulty = (HappinessTracker.InDepressedState() ? (maximumDifficultyOfSetCollection - 1) : 0);
+        var actualBaselineDifficulty = Mathf.Clamp(proposedBaselineDifficulty, 0, maximumDifficultyOfSetCollection);
+        var pieceDifficulty = UnityEngine.Random.Range(actualBaselineDifficulty, m_currentMaxDifficulty + 1);
         var pieceList = m_set[(SetPiece.PieceDifficulties)pieceDifficulty];
         var pieceToSpawn = pieceList[UnityEngine.Random.Range(0, pieceList.Count)];
         var isValid = CheckPieceIsValid(pieceToSpawn);
@@ -97,6 +105,18 @@ public class SetPieceDirector : MonoBehaviour
         m_trackPopulator.DespawnPassedSetPiece();
     }
 
+    private void AdjustDifficulty()
+    {
+        if ((m_currentSetCollection.DifficultyConfigs.Length - 1) == (m_currentMaxDifficulty))
+            return; //Max difficulty reached. No progression possible.
+
+        var currentDifficultyConfig = m_currentSetCollection.DifficultyConfigs[m_currentMaxDifficulty];
+        if (PlayerStats.DistanceTravelled >= currentDifficultyConfig.DistanceToProgress)
+        {
+            m_currentMaxDifficulty++;
+        }
+    }
+
     private void Event_OnPlayerMoveForwards(int spacesMoved)
     {
         for (var index = 0; index < spacesMoved; ++index)
@@ -104,5 +124,7 @@ public class SetPieceDirector : MonoBehaviour
             PlaceNextSetPiece();
             RemovePassedSetPiece();
         }
+
+        AdjustDifficulty();
     }
 }

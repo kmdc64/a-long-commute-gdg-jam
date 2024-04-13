@@ -29,11 +29,11 @@ public class SetPiece : MonoBehaviour
 
     public PieceTypes PieceType => m_pieceType;
     public PieceDifficulties DifficultyLevel => m_difficultyLevel;
-    public bool AllowItemSpawns => m_allowItemSpawns;
+    public bool AllowItemSpawns => (m_chanceOfItemSpawn != 0f);
 
     [SerializeField] private PieceTypes m_pieceType;
+    [Tooltip("This set piece will only appear once this difficulty level has been reached.")]
     [SerializeField] private PieceDifficulties m_difficultyLevel;
-    [SerializeField] private bool m_allowItemSpawns;
     [Range(0f, 1f)]
     [SerializeField] private float m_chanceOfItemSpawn;
     [SerializeField] private SetPieceItem[] m_spawnableItems;
@@ -47,7 +47,7 @@ public class SetPiece : MonoBehaviour
 
     private void Start()
     {
-        if (m_allowItemSpawns)
+        if (m_chanceOfItemSpawn != 0f)
         {
             AttemptItemSpawn();
         }
@@ -55,6 +55,7 @@ public class SetPiece : MonoBehaviour
 
     private void OnEnable()
     {
+        // Resume a shrinking animation that was mid-way.
         if (m_despawnTimeElapsed > 0f)
         {
             m_despawnCoroutine = StartCoroutine(ShrinkAnimation());

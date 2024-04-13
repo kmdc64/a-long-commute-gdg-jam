@@ -21,9 +21,13 @@ public class PlayerDirector : MonoBehaviour
     private const string SlideAnimationId = "Slide";
 
     [SerializeField] private Animator m_playerAnimator;
+    [Tooltip("How much happiness to lose per unit interval.")]
     [SerializeField] private int m_happinessLossRate = 5;
+    [Tooltip("The rate at which happiness is lost in seconds.")]
     [SerializeField] private float m_happinessLossInterval = 0.25f;
+    [Tooltip("Cooldown between forward movements.")]
     [SerializeField] private float m_forwardsCooldown = 0.5f;
+    [Tooltip("A period of time in which players can queue forwards movement inputs.")]
     [SerializeField] private float m_forwardsCooldownLeeway = 0.2f;
     [SerializeField] private KeyCode m_stepKey = KeyCode.UpArrow;
     [SerializeField] private KeyCode m_slideKey = KeyCode.DownArrow;
@@ -131,6 +135,7 @@ public class PlayerDirector : MonoBehaviour
                 break;
 
             case SetPieceItem.ItemTypes.Boost:
+                // This hasn't been implemented yet.
                 break;
 
             case SetPieceItem.ItemTypes.Death:

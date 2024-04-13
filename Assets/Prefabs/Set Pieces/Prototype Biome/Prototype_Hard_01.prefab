@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 511938131132427347}
   - component: {fileID: 7686516532521780508}
   m_Layer: 0
-  m_Name: TestSetPiece_Hard_01
+  m_Name: Prototype_Hard_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -87,9 +87,10 @@ public class PlayerStats : MonoBehaviour
                 UpdateScore(10);
                 break;
             case SetPieceItem.ItemTypes.Death:
+                // Do nothing.
                 break;
             default:
-                Debug.LogError("Item type not supported.");
+                Debug.LogError("Item type does not have stat tracking behaviour.");
                 break;
         }
     }
