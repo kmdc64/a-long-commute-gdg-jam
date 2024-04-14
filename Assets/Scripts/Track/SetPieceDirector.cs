@@ -1,6 +1,6 @@
 /*
  * SetPieceDirector:
- * Controls the set pieces that populate the track.
+ * Controls set generation & difficulty scaling.
  */
 
 using System;
@@ -64,11 +64,15 @@ public class SetPieceDirector : MonoBehaviour
 
     private void PlaceNextSetPiece()
     {
-        // Raise the baseline difficulty if the happiness has dropped into the depression zone.
-        var maximumDifficultyOfSetCollection = Mathf.Min(m_currentSetCollection.DifficultyConfigs.Length - 1, m_currentMaxDifficulty);
-        var proposedBaselineDifficulty = (HappinessTracker.InDepressedState() ? (maximumDifficultyOfSetCollection - 1) : 0);
-        var actualBaselineDifficulty = Mathf.Clamp(proposedBaselineDifficulty, 0, maximumDifficultyOfSetCollection);
-        var pieceDifficulty = UnityEngine.Random.Range(actualBaselineDifficulty, m_currentMaxDifficulty + 1);
+        var pieceToSpawn = GetNextPieceToSpawn();
+        m_trackPopulator.SpawnSetPiece(pieceToSpawn);
+        m_lastPieceStaticObstacle = (pieceToSpawn.PieceType is SetPiece.PieceTypes.Slide or SetPiece.PieceTypes.Jump);
+        m_lastPieceMovingObstacle = (pieceToSpawn.PieceType is SetPiece.PieceTypes.MovingObstacle);
+    }
+
+    private SetPiece GetNextPieceToSpawn()
+    {
+        var pieceDifficulty = GetPieceDifficulty();
         var pieceList = m_set[(SetPiece.PieceDifficulties)pieceDifficulty];
         var pieceToSpawn = pieceList[UnityEngine.Random.Range(0, pieceList.Count)];
         var isValid = CheckPieceIsValid(pieceToSpawn);
@@ -78,9 +82,17 @@ public class SetPieceDirector : MonoBehaviour
             pieceToSpawn = pieceList[UnityEngine.Random.Range(0, pieceList.Count)];
             isValid = CheckPieceIsValid(pieceToSpawn);
         }
-        m_trackPopulator.SpawnSetPiece(pieceToSpawn);
-        m_lastPieceStaticObstacle = (pieceToSpawn.PieceType is SetPiece.PieceTypes.Slide or SetPiece.PieceTypes.Jump);
-        m_lastPieceMovingObstacle = (pieceToSpawn.PieceType is SetPiece.PieceTypes.MovingObstacle);
+        return pieceToSpawn;
+    }
+
+    private int GetPieceDifficulty()
+    {
+        // Raise the baseline difficulty if the happiness has dropped into the depression zone.
+        var maximumDifficultyOfSetCollection = Mathf.Min(m_currentSetCollection.DifficultyConfigs.Length - 1, m_currentMaxDifficulty);
+        var proposedBaselineDifficulty = (HappinessTracker.InDepressedState() ? (maximumDifficultyOfSetCollection - 1) : 0);
+        var actualBaselineDifficulty = Mathf.Clamp(proposedBaselineDifficulty, 0, maximumDifficultyOfSetCollection);
+        var pieceDifficulty = UnityEngine.Random.Range(actualBaselineDifficulty, m_currentMaxDifficulty + 1);
+        return pieceDifficulty;
     }
 
     private bool CheckPieceIsValid(SetPiece piece)

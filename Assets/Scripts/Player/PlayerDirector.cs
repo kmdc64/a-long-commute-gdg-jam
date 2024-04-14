@@ -120,6 +120,13 @@ public class PlayerDirector : MonoBehaviour
             m_forwardRequested = false;
         }
     }
+    
+    private void ResetForwardsRequests()
+    {
+        m_stepRequested = false;
+        m_slideRequested = false;
+        m_forwardRequested = false;
+    }
 
     private void Event_OnAnyItemCollected(SetPieceItem item)
     {
@@ -154,8 +161,6 @@ public class PlayerDirector : MonoBehaviour
 
     private void Event_OnNewRunStarted()
     {
-        m_stepRequested = false;
-        m_slideRequested = false;
-        m_forwardRequested = false;
+        ResetForwardsRequests();
     }
 }

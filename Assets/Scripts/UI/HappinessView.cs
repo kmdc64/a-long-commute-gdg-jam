@@ -27,10 +27,9 @@ public class HappinessView : MonoBehaviour
     {
         HappinessTracker.OnHappinessUpdated -= Event_OnHappinessUpdated;
     }
-
-    private void Event_OnHappinessUpdated(float normalisedHappinessValue)
+    
+    private void UpdateHappinessBar(float normalisedHappinessValue)
     {
-        // Set happiness bar colour.
         var inDepressedState = HappinessTracker.InDepressedState();
         var curve = inDepressedState ? m_neutralToDepression : m_happinessToNeutral;
         var evaluation = curve.Evaluate(normalisedHappinessValue);
@@ -38,12 +37,20 @@ public class HappinessView : MonoBehaviour
         var colorB = inDepressedState ? m_neutralColor : m_happinessColor;
         var color = Color.Lerp(colorA, colorB, evaluation);
         m_happinessBar.color = color;
+    }
 
-        // Set world colour...
+    private void UpdateWorldSaturation(float normalisedHappinessValue)
+    {
         m_happinessBar.fillAmount = normalisedHappinessValue;
         var colourifyValue = 1f - m_colourifyCurve.Evaluate(normalisedHappinessValue);
         m_colourMaterial.SetFloat("_Greyscaleify", colourifyValue);
         var bleachifyValue = m_bleachifyCurve.Evaluate(normalisedHappinessValue);
         m_colourMaterial.SetFloat("_Brighten", bleachifyValue);
+    }
+
+    private void Event_OnHappinessUpdated(float normalisedHappinessValue)
+    {
+        UpdateHappinessBar(normalisedHappinessValue);
+        UpdateWorldSaturation(normalisedHappinessValue);
     }
 }
