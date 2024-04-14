@@ -5,8 +5,8 @@ Submission for the GDG Jam - April 2024 - "Pushing Forwards"
 - Link to most recent post-submission builds: https://kdc64.itch.io/a-long-commute
 
 This project was created during a 48h Game Jam weekened. The team members are:
-- Kevin Da Cruz: Programmer
-- Olliver Hopley: 3D/UI Technical Artist
+- Kevin Da Cruz: Programmer - https://github.com/kmdc64
+- Olliver Hopley: 3D/UI Technical Artist - https://github.com/OliverHopley
 - Paul Elder: 3D Artist
 
 "A Long Commute" is a procedural arcade hopper about commuting through extreme circumstances! Along the way you'll need to collect muffins to fill up the muffinometre, as low blood sugar levels will result in the world losing its colour and becoming harder to traverse!
