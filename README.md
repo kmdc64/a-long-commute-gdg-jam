@@ -1,9 +1,8 @@
-# gdg-04-2024-jam
-A LONG COMMUTE
+# A LONG COMMUTE
 
 Submission for the GDG Jam - April 2024 - "Pushing Forwards"
-Link to Game Jam submission (v1.0.2): https://itch.io/jam/the-gdg-jam/rate/2631329
-Link to most recent post-submission builds: https://kdc64.itch.io/a-long-commute
+- Link to Game Jam submission (v1.0.2): https://itch.io/jam/the-gdg-jam/rate/2631329
+- Link to most recent post-submission builds: https://kdc64.itch.io/a-long-commute
 
 This project was created during a 48h Game Jam weekened. The team members are:
 - Kevin Da Cruz: Programmer
